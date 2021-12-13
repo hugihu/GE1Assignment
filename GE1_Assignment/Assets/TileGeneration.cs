@@ -37,8 +37,8 @@ public class TileGeneration : MonoBehaviour {
     }
 
     private Texture2D BuildTexture(float[,] heightMap) {
-        int tileDepth = noiseMap.GetLength (0);
-        int tileWidth = noiseMap.GetLength (1);
+        int tileDepth = heightMap.GetLength(0);
+        int tileWidth = heightMap.GetLength(1);
 
         Color[] colorMap = new Color[tileDepth * tileWidth];
         for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
