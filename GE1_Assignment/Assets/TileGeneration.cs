@@ -2,7 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class TerrainType {
+  public string name;
+  public float height;
+  public Color color;
+}
+
 public class TileGeneration : MonoBehaviour {
+
+    [SerializeField]
+    private TerrainType[] terrainTypes;
+    
     [SerializeField]
     NoiseMapGeneration noiseMapGeneration;
 
@@ -19,7 +30,7 @@ public class TileGeneration : MonoBehaviour {
     private float mapScale;
 
     void Start() {
-        GenerateTile ();
+        GenerateTile();
     }
 
     void GenerateTile() {
@@ -57,4 +68,5 @@ public class TileGeneration : MonoBehaviour {
         tileTexture.Apply ();
         return tileTexture;
     }
-    }
+    
+}

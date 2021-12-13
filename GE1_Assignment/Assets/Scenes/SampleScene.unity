@@ -382,6 +382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11b05e876e8e2748b2bcc26b0916a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseMapGeneration: {fileID: 485381619}
+  tileRenderer: {fileID: 706277785}
+  meshFilter: {fileID: 706277786}
+  meshCollider: {fileID: 706277784}
+  mapScale: 0
 --- !u!64 &706277784
 MeshCollider:
   m_ObjectHideFlags: 0
