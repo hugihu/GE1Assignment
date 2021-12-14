@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650390741937098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -20, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,15 +127,15 @@ MonoBehaviour:
   levelScale: 2
   terrainTypes:
   - name: water
-    height: 0.4
+    height: 0.2
     color: {r: 0.43382353, g: 0.6954359, b: 1, a: 0}
   - name: grass
-    height: 0.7
+    height: 0.4
     color: {r: 0, g: 0.5441177, b: 0.116328575, a: 0}
   - name: mountain
     height: 1
     color: {r: 0.38235295, g: 0.27687627, b: 0, a: 0}
-  heightMultiplier: 3
+  heightMultiplier: 8
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -146,17 +146,8 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.40182558
-      value: 0.010638431
-      inSlope: 0.091103815
-      outSlope: 0.091103815
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
@@ -164,18 +155,18 @@ MonoBehaviour:
       outSlope: 2
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   waves:
   - seed: 5613
-    frequency: 1
+    frequency: 0.5
     amplitude: 1
   - seed: 9551
-    frequency: 0.5
+    frequency: 0.25
     amplitude: 2
   - seed: 6712
-    frequency: 0.25
+    frequency: 0.125
     amplitude: 4
