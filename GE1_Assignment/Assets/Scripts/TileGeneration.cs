@@ -57,6 +57,41 @@ public class TileGeneration : MonoBehaviour {
 
 	[SerializeField]
 	private VisualizationMode visualizationMode;
+	
+	public GameObject coinPrefab;
+
+	void SpawnCoins()
+	{
+		int coinsToSpawn = 10;
+
+		for (int i = 0; i < coinsToSpawn; i ++)
+		{
+			GameObject temp = Instantiate(coinPrefab);
+			temp.transform.position = GetRandonPointInCollider(GetComponent<Collider>());
+		}
+	}
+
+	Vector3 GetRandonPointInCollider(Collider collider)
+	{
+		Vector3 point = new Vector3(
+			Random.Range(collider.bounds.min.x, collider.bounds.max.x),
+			Random.Range(collider.bounds.min.y, collider.bounds.max.y),
+			Random.Range(collider.bounds.min.z, collider.bounds.max.z)
+		);
+
+		if (point != collider.ClosestPoint(point))
+		{
+			point = GetRandonPointInCollider(collider);
+		}
+
+		point.y = 1;
+		return point;
+	}
+
+	private void start()
+	{
+		SpawnCoins();
+	}
 
 	public TileData GenerateTile(float centerVertexZ, float maxDistanceZ) {
 		// calculate tile depth and width based on the mesh vertices
@@ -295,6 +330,7 @@ public class TileData {
 		this.mesh = mesh;
 		this.texture = texture;
 	}
+
 }
 
 enum VisualizationMode {Height, Heat, Moisture, Biome}
