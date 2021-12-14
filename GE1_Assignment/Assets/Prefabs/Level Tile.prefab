@@ -124,7 +124,7 @@ MonoBehaviour:
   tileRenderer: {fileID: 23011931515578192}
   meshFilter: {fileID: 33909867377678710}
   meshCollider: {fileID: 64886048992421146}
-  levelScale: 3
+  levelScale: 2
   terrainTypes:
   - name: water
     height: 0.4
