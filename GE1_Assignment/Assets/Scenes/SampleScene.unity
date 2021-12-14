@@ -398,6 +398,48 @@ MonoBehaviour:
   meshCollider: {fileID: 706277784}
   mapScale: 3
   heightMultiplier: 3
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2940216
+      value: 0.0023536682
+      inSlope: -0.000008252951
+      outSlope: -0.000008252951
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.8383206
+    - serializedVersion: 3
+      time: 0.39901823
+      value: 0.0029765517
+      inSlope: 0.116416596
+      outSlope: 0.116416596
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15923983
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!64 &706277784
 MeshCollider:
   m_ObjectHideFlags: 0
