@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: d4469953c6d8d694fafca44a0ff4dafc
-timeCreated: 1505767237
-licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilePrefab: {instanceID: 0}
+  - treeGeneration: {instanceID: 0}
+  - riverGeneration: {instanceID: 0}
+  - coinPrefab: {fileID: 4274716317736201092, guid: decf1ec9e0379534e88973928ac20c93,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

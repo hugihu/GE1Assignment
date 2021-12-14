@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileGeneration : MonoBehaviour {
+public class TileGeneration : MonoBehaviour 
+{
 
 	[SerializeField]
 	NoiseMapGeneration noiseMapGeneration;
@@ -58,7 +59,8 @@ public class TileGeneration : MonoBehaviour {
 	[SerializeField]
 	private VisualizationMode visualizationMode;
 
-	public TileData GenerateTile(float centerVertexZ, float maxDistanceZ) {
+	public TileData GenerateTile(float centerVertexZ, float maxDistanceZ) 
+	{
 		// calculate tile depth and width based on the mesh vertices
 		Vector3[] meshVertices = this.meshFilter.mesh.vertices;
 		int tileDepth = (int)Mathf.Sqrt (meshVertices.Length);
@@ -81,8 +83,10 @@ public class TileGeneration : MonoBehaviour {
 		// generate a heatMap using Perlin Noise
 		float[,] randomHeatMap = this.noiseMapGeneration.GeneratePerlinNoiseMap (tileDepth, tileWidth, this.levelScale, offsetX, offsetZ, this.heatWaves);
 		float[,] heatMap = new float[tileDepth, tileWidth];
-		for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
-			for (int xIndex = 0; xIndex < tileWidth; xIndex++) {
+		for (int zIndex = 0; zIndex < tileDepth; zIndex++) 
+		{
+			for (int xIndex = 0; xIndex < tileWidth; xIndex++) 
+			{
 				// mix both heat maps together by multiplying their values
 				heatMap [zIndex, xIndex] = uniformHeatMap [zIndex, xIndex] * randomHeatMap [zIndex, xIndex];
 				// makes higher regions colder, by adding the height value to the heat map
@@ -92,8 +96,10 @@ public class TileGeneration : MonoBehaviour {
 
 		// generate a moistureMap using Perlin Noise
 		float[,] moistureMap = this.noiseMapGeneration.GeneratePerlinNoiseMap (tileDepth, tileWidth, this.levelScale, offsetX, offsetZ, this.moistureWaves);
-		for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
-			for (int xIndex = 0; xIndex < tileWidth; xIndex++) {
+		for (int zIndex = 0; zIndex < tileDepth; zIndex++) 
+		{
+			for (int xIndex = 0; xIndex < tileWidth; xIndex++) 
+			{
 				// makes higher regions dryer, by reducing the height value from the heat map
 				moistureMap [zIndex, xIndex] -= this.moistureCurve.Evaluate(heightMap [zIndex, xIndex]) * heightMap [zIndex, xIndex];
 			}
@@ -113,7 +119,8 @@ public class TileGeneration : MonoBehaviour {
 		Biome[,] chosenBiomes = new Biome[tileDepth, tileWidth];
 		Texture2D biomeTexture = BuildBiomeTexture(chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes);
 
-		switch (this.visualizationMode) {
+		switch (this.visualizationMode) 
+		{
 		case VisualizationMode.Height:
 			// assign material texture to be the heightTexture
 			this.tileRenderer.material.mainTexture = heightTexture;
@@ -142,13 +149,16 @@ public class TileGeneration : MonoBehaviour {
 		return tileData;
 	}
 
-	private Texture2D BuildTexture(float[,] heightMap, TerrainType[] terrainTypes, TerrainType[,] chosenTerrainTypes) {
+	private Texture2D BuildTexture(float[,] heightMap, TerrainType[] terrainTypes, TerrainType[,] chosenTerrainTypes) 
+	{
 		int tileDepth = heightMap.GetLength (0);
 		int tileWidth = heightMap.GetLength (1);
 
 		Color[] colorMap = new Color[tileDepth * tileWidth];
-		for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
-			for (int xIndex = 0; xIndex < tileWidth; xIndex++) {
+		for (int zIndex = 0; zIndex < tileDepth; zIndex++) 
+		{
+			for (int xIndex = 0; xIndex < tileWidth; xIndex++) 
+			{
 				// transform the 2D map index is an Array index
 				int colorIndex = zIndex * tileWidth + xIndex;
 				float height = heightMap [zIndex, xIndex];
@@ -171,18 +181,22 @@ public class TileGeneration : MonoBehaviour {
 		return tileTexture;
 	}
 
-	TerrainType ChooseTerrainType(float noise, TerrainType[] terrainTypes) {
+	TerrainType ChooseTerrainType(float noise, TerrainType[] terrainTypes) 
+	{
 		// for each terrain type, check if the height is lower than the one for the terrain type
-		foreach (TerrainType terrainType in terrainTypes) {
+		foreach (TerrainType terrainType in terrainTypes) 
+		{
 			// return the first terrain type whose height is higher than the generated one
-			if (noise < terrainType.threshold) {
+			if (noise < terrainType.threshold) 
+			{
 				return terrainType;
 			}
 		}
 		return terrainTypes [terrainTypes.Length - 1];
 	}
 
-	private void UpdateMeshVertices(float[,] heightMap) {
+	private void UpdateMeshVertices(float[,] heightMap) 
+	{
 		int tileDepth = heightMap.GetLength (0);
 		int tileWidth = heightMap.GetLength (1);
 
@@ -190,8 +204,10 @@ public class TileGeneration : MonoBehaviour {
 
 		// iterate through all the heightMap coordinates, updating the vertex index
 		int vertexIndex = 0;
-		for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
-			for (int xIndex = 0; xIndex < tileWidth; xIndex++) {
+		for (int zIndex = 0; zIndex < tileDepth; zIndex++) 
+		{
+			for (int xIndex = 0; xIndex < tileWidth; xIndex++) 
+			{
 				float height = heightMap [zIndex, xIndex];
 
 				Vector3 vertex = meshVertices [vertexIndex];
@@ -210,18 +226,22 @@ public class TileGeneration : MonoBehaviour {
 		this.meshCollider.sharedMesh = this.meshFilter.mesh;
 	}
 
-	private Texture2D BuildBiomeTexture(TerrainType[,] heightTerrainTypes, TerrainType[,] heatTerrainTypes, TerrainType[,] moistureTerrainTypes, Biome[,] chosenBiomes) {
+	private Texture2D BuildBiomeTexture(TerrainType[,] heightTerrainTypes, TerrainType[,] heatTerrainTypes, TerrainType[,] moistureTerrainTypes, Biome[,] chosenBiomes) 
+	{
 		int tileDepth = heatTerrainTypes.GetLength (0);
 		int tileWidth = heatTerrainTypes.GetLength (1);
 
 		Color[] colorMap = new Color[tileDepth * tileWidth];
-		for (int zIndex = 0; zIndex < tileDepth; zIndex++) {
-			for (int xIndex = 0; xIndex < tileWidth; xIndex++) {
+		for (int zIndex = 0; zIndex < tileDepth; zIndex++) 
+		{
+			for (int xIndex = 0; xIndex < tileWidth; xIndex++) 
+			{
 				int colorIndex = zIndex * tileWidth + xIndex;
 
 				TerrainType heightTerrainType = heightTerrainTypes [zIndex, xIndex];
 				// check if the current coordinate is a water region
-				if (heightTerrainType.name != "water") {
+				if (heightTerrainType.name != "water") 
+				{
 					// if a coordinate is not water, its biome will be defined by the heat and moisture values
 					TerrainType heatTerrainType = heatTerrainTypes [zIndex, xIndex];
 					TerrainType moistureTerrainType = moistureTerrainTypes [zIndex, xIndex];
@@ -233,7 +253,8 @@ public class TileGeneration : MonoBehaviour {
 
 					// save biome in chosenBiomes matrix only when it is not water
 					chosenBiomes [zIndex, xIndex] = biome;
-				} else {
+				} else 
+				{
 					// water regions don't have biomes, they always have the same color
 					colorMap [colorIndex] = this.waterColor;
 				}
@@ -251,7 +272,8 @@ public class TileGeneration : MonoBehaviour {
 }
 
 [System.Serializable]
-public class TerrainType {
+public class TerrainType 
+{
 	public string name;
 	public float threshold;
 	public Color color;
@@ -259,19 +281,22 @@ public class TerrainType {
 }
 
 [System.Serializable]
-public class Biome {
+public class Biome 
+{
 	public string name;
 	public Color color;
 	public int index;
 }
 
 [System.Serializable]
-public class BiomeRow {
+public class BiomeRow
+{
 	public Biome[] biomes;
 }
 
 // class to store all data for a single tile
-public class TileData {
+public class TileData 
+{
 	public float[,]  heightMap;
 	public float[,]  heatMap;
 	public float[,]  moistureMap;
@@ -283,8 +308,9 @@ public class TileData {
 	public Texture2D texture;
 
 	public TileData(float[,]  heightMap, float[,]  heatMap, float[,]  moistureMap, 
-		TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes,
-		Biome[,] chosenBiomes, Mesh mesh, Texture2D texture) {
+	TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes,
+	Biome[,] chosenBiomes, Mesh mesh, Texture2D texture) 
+	{
 		this.heightMap = heightMap;
 		this.heatMap = heatMap;
 		this.moistureMap = moistureMap;

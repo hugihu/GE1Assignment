@@ -52,11 +52,12 @@ public class LevelGeneration : MonoBehaviour {
 			point = GetRandonPointInCollider(collider);
 		}
 
-		point.y = 1;
+		point.y = 2;
 		return point;
 	}
 
-	void GenerateMap() {
+	void GenerateMap() 
+	{
 		// get the tile dimensions from the tile Prefab
 		Vector3 tileSize = tilePrefab.GetComponent<MeshRenderer> ().bounds.size;
 		int tileWidth = (int)tileSize.x;
@@ -73,8 +74,10 @@ public class LevelGeneration : MonoBehaviour {
 		LevelData levelData = new LevelData (tileDepthInVertices, tileWidthInVertices, this.levelDepthInTiles, this.levelWidthInTiles);
 
 		// for each Tile, instantiate a Tile in the correct position
-		for (int xTileIndex = 0; xTileIndex < levelWidthInTiles; xTileIndex++) {
-			for (int zTileIndex = 0; zTileIndex < levelDepthInTiles; zTileIndex++) {
+		for (int xTileIndex = 0; xTileIndex < levelWidthInTiles; xTileIndex++) 
+		{
+			for (int zTileIndex = 0; zTileIndex < levelDepthInTiles; zTileIndex++) 
+			{
 				// calculate the tile position based on the X and Z indices
 				Vector3 tilePosition = new Vector3(this.gameObject.transform.position.x + xTileIndex * tileWidth, 
 					this.gameObject.transform.position.y, 
@@ -96,12 +99,14 @@ public class LevelGeneration : MonoBehaviour {
 }
 
 // class to store all the merged tiles data
-public class LevelData {
+public class LevelData 
+{
 	private int tileDepthInVertices, tileWidthInVertices;
 
 	public TileData[,] tilesData;
 
-	public LevelData(int tileDepthInVertices, int tileWidthInVertices, int levelDepthInTiles, int levelWidthInTiles) {
+	public LevelData(int tileDepthInVertices, int tileWidthInVertices, int levelDepthInTiles, int levelWidthInTiles) 
+	{
 		// build the tilesData matrix based on the level depth and width
 		tilesData = new TileData[tileDepthInVertices * levelDepthInTiles, tileWidthInVertices * levelWidthInTiles];
 
@@ -109,12 +114,14 @@ public class LevelData {
 		this.tileWidthInVertices = tileWidthInVertices;
 	}
 
-	public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex) {
+	public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex) 
+	{
 		// save the TileData in the corresponding coordinate
 		tilesData [tileZIndex, tileXIndex] = tileData;
 	}
 
-	public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex) {
+	public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex) 
+	{
 		// the tile index is calculated by dividing the index by the number of tiles in that axis
 		int tileZIndex = (int)Mathf.Floor ((float)zIndex / (float)this.tileDepthInVertices);
 		int tileXIndex = (int)Mathf.Floor ((float)xIndex / (float)this.tileWidthInVertices);
@@ -129,13 +136,15 @@ public class LevelData {
 }
 
 // class to represent a coordinate in the Tile Coordinate System
-public class TileCoordinate {
+public class TileCoordinate 
+{
 	public int tileZIndex;
 	public int tileXIndex;
 	public int coordinateZIndex;
 	public int coordinateXIndex;
 
-	public TileCoordinate(int tileZIndex, int tileXIndex, int coordinateZIndex, int coordinateXIndex) {
+	public TileCoordinate(int tileZIndex, int tileXIndex, int coordinateZIndex, int coordinateXIndex) 
+	{
 		this.tileZIndex = tileZIndex;
 		this.tileXIndex = tileXIndex;
 		this.coordinateZIndex = coordinateZIndex;
