@@ -9,8 +9,7 @@ Class Group: TU857
 # Description of the project
 The goal for this project was to create a procedurally generated system in Unity. This System comprises of one main scene, the procedural generated landscape with different biomes with the intention of random coins to be spawned in and be collectable by the player(coins not working). The landscape is generated using Perlin Noise so the landscape changes based on the seed. 
 
-Link to Youtube Video: https://youtu.be/nvSofavHC-U
-
+Link to Youtube Video: https://youtu.be/ShXoayBq34o
 # Instructions for use
 To use this project clone the repository into a suitable folder of your chosing. Launch the unity hub and install the version: "2020.3.21f1" once installed, open the project and browse through your file explorer to find the project folder. Launch the project and press the play button, you will be placed in a spot on the landscape you can use the controls 'W' 'A' 'S' 'D', to move througout the environment. The mouse can also be used to rotate the persons view. Simply walk around and explore the different biomes. 
 
