@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Utility
 {
     public class SimpleActivatorMenu : MonoBehaviour
     {
-        // An incredibly simple menu which, when given references
+        // A simple menu which, when given references
         // to gameobjects in the scene
         //public GUIText camSwitchButton;
         public GameObject[] objects;
