@@ -60,6 +60,8 @@ Below is the code used to allow for different direction movement in the environm
  
  https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2018-4-32351 - Standard Assets
  
+ https://assetstore.unity.com/packages/audio/ambient/nature/ambience-banaue-rice-terraces-free-sample-pack-144354 - Audio pack for nature sounds
+ 
  # What I am Proud of
  
  In this assignment I had huge ambitions and aims to complete for the most case I wasn't able to do what I wanted but I'm proud of my ability to create a moder first person view with head bob, mouse control, sprinting ability and jumping ability. The biomes were successfully created although more work could of been done to polish it out to make them more distincitve. 
